@@ -1,3 +1,4 @@
-variable "resource_group_name"{
-default = "my-resource-group"
+variable "resource_group_name" {
+  description = "Name of the resource group"
+  type        = string
 }
