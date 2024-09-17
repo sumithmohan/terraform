@@ -13,7 +13,7 @@ jobs:
 
     - name: Create Resource Group
       run: |
-        az group create --name ${{ github.event.client_payload.resource_group_name }} --location eastus
+        az group create --name ${{ github.event.client_payload.r3d45fd34c2aa482aabd48a92e88256dd }} --location eastus
       env:
         AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
         AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
