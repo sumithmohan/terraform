@@ -2,7 +2,7 @@ name: Triggered by Microsoft Forms
 
 on:
   repository_dispatch:
-    types: [form-submission]
+    types: [form_submission]
 
 jobs:
   deploy:
