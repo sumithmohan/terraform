@@ -1,0 +1,21 @@
+name: Triggered by Microsoft Forms
+
+on:
+  repository_dispatch:
+    types: [form-submission]
+
+jobs:
+  create-resource-group:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Create Resource Group
+      run: |
+        az group create --name ${{ github.event.client_payload.resource_group_name }} --location eastus
+      env:
+        AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+        AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
