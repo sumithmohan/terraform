@@ -1,15 +1,8 @@
-name: Deploy Resource Group
+name: Triggered by Microsoft Forms
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-    inputs:
-      resource_group_name:
-        description: 'Name of the resource group'
-        required: true
-        default: 'my-resource-group'
+  repository_dispatch:
+    types: [form-submission]
 
 jobs:
   deploy:
@@ -33,7 +26,7 @@ jobs:
       run: terraform init
 
     - name: Apply Terraform
-      run: terraform apply -auto-approve -var "resource_group_name=${{ github.event.inputs.resource_group_name }}"
+      run: terraform apply -auto-approve -var "resource_group_name=${{ github.event.client_payload.r3d45fd34c2aa482aabd48a92e88256dd }}"
       env:
         ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
         ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
